@@ -29,7 +29,36 @@ V             [0, 255]      Value
 
  1. 获取视频中的每一帧
  2. BGR 转 HSV
- 3. We threshold the HSV image for a range of blue color // 应该是跳阵 H S V 里面的的某个值到某个范围（蓝色）
+ 3. We threshold the HSV image for a range of blue color // 应该是调整 H S V 里面的的某个值到某个范围（蓝色）
  4. 经过第三步，蓝色物体就变白色了，其它物体变黑色，跟其它物体区分开来，成功
  
  
+ ```
+ import cv2
+import numpy as np
+cap = cv2.VideoCapture(0)
+while(1):
+        # Take each frame
+        _, frame = cap.read()
+        # Convert BGR to HSV
+        50 Chapter 1. OpenCV-Python Tutorials
+        OpenCV-Python Tutorials Documentation, Release 1
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        # define range of blue color in HSV
+        lower_blue = np.array([110,50,50])
+        upper_blue = np.array([130,255,255])
+        # Threshold the HSV image to get only blue colors
+        mask = cv2.inRange(hsv, lower_blue, upper_blue)
+        # Bitwise-AND mask and original image
+        res = cv2.bitwise_and(frame,frame, mask= mask)
+        cv2.imshow('frame',frame)
+        cv2.imshow('mask',mask)
+        cv2.imshow('res',res)
+        k = cv2.waitKey(5) & 0xFF
+        if k == 27:
+                break
+cv2.destroyAllWindows()
+ ```
+ 
+ 
+关键就是cv2.inRange方法了，至于这个区间怎么定，不知道呃
