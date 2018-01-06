@@ -1,0 +1,35 @@
+#### 改变颜色控件
+// 我的理解是BGR 表示的矩阵转成 RGB表示的矩阵
+
+有超过150 个函数可用
+
+只学两个 BGR <--> Gray        // 不知道什么意思
+        BGR <--> HSV         // 不知道什么意思
+        
+cv2.cvtColor(img, flag)
+
+##### flag的可选值
+
+BGR -> Gray          cv2.COLOR_BGR2GRAY
+BGR -> HSV           cv2.COLOR_BGR2HSV
+
+获取所有的flag的值使用下面的脚本
+```
+>>> import cv2
+>>> flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
+>>> print flags
+```
+##### HSV各标量范围
+H             [0, 179]      色调
+S             [0, 255]      饱和度
+V             [0, 255]      Value
+
+
+#### 物体跟踪
+
+ 1. 获取视频中的每一帧
+ 2. BGR 转 HSV
+ 3. We threshold the HSV image for a range of blue color // 应该是跳阵 H S V 里面的的某个值到某个范围（蓝色）
+ 4. 经过第三步，蓝色物体就变白色了，其它物体变黑色，跟其它物体区分开来，成功
+ 
+ 
