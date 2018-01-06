@@ -1,3 +1,4 @@
+## 1.3.3 性能测量和提高技术
 ### 统计
 cv2.getTickCount：该方法返回当前时钟周期
 cv2.getTickFrequency：该方法返回每秒有多少个时钟周期
@@ -107,3 +108,9 @@ np.count_nonzero()
  - profiling
  - line profiling
  - memory measurement
+#### 代码优化建议 
+
+ - 避免多重循环 
+ - 使用cv2 和numpy帮你实现好的矩阵操作函数
+ - 利用缓存一致性 // 不知道缓存一致性是啥，猜测可能是一份缓存的意思
+ - 不要做矩阵复制操作，利用视图 // 不知道视图是啥，数据库也有视图这种东西，可能是差不多的东西
