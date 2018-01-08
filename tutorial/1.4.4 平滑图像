@@ -49,3 +49,5 @@ func1 成立的话则执行 func2 否则该点像素值不变
 
 - func1 判断是否进行高斯模糊，高斯函数的强度差异  Gaussian function of intensity differences
 - func2 高斯模糊
+
+这个效果更给力，如果func2换成是中位数过滤会不会更给力
