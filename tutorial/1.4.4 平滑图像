@@ -1,0 +1,51 @@
+## 学习目标
+ - 用各种低通滤波器模糊图像
+ - 将定制的滤镜应用于图像（2D）
+ 
+## 2D卷积（图像过滤）
+
+low-pass filters (LPF)      低通滤波器     清理噪声，模糊图像
+high-pass filters (HPF)     高通滤波器     找到图像的边缘
+
+
+### 平均过滤
+
+取像素点半径为5以内的所有像素的色值平均值 作为该点过滤后的色值
+
+cv2.filter2D()
+
+## 图像模糊（图像平滑）
+图像模糊是通过将图像与低通滤波器内核进行卷积来实现的。
+
+以下介绍四种模糊技术
+
+### 1. 平均
+
+### 2. 高斯
+高斯滤波非常有效地去除图像中的高斯噪声。
+Gaussian weighted average       高斯加权平均值       // 待了解
+ - cv2.GaussianBlur()           见src文件夹下的1.4.4_3高斯模糊.py 例程
+ - cv2.getGaussianKernel()      不会用
+ 
+### 3. 中位数过滤
+
+就是取周围点的色值的中位数
+
+有助于去除 salt-and-pepper noise                   // 不知道是什么东东
+the kernel size must be a positive odd integer   // 奇数 
+
+哇，这个模糊效果好像 美图软件上的 磨皮工具
+
+
+### 4. 双边过滤
+cv2.bilateralFilter(img,9,75,75)
+
+两个高斯过滤函数 
+```
+if (func1) :
+    func2
+```
+func1 成立的话则执行 func2 否则该点像素值不变 
+
+- func1 判断是否进行高斯模糊，高斯函数的强度差异  Gaussian function of intensity differences
+- func2 高斯模糊
