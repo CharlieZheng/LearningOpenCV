@@ -1,0 +1,6 @@
+#### 在Macbook 上配置OpenCV-Python
+在~/.bash_profile文件末尾加上下面代码
+```
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+```
+
